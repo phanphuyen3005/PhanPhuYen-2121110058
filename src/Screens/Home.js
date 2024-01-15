@@ -15,7 +15,7 @@ const Home = () => {
       <HomeIcon />
       <HomeSearch/>
       <HomeBanner/>
-      <ProductsTile  title="Áo Dài                    "/>
+      <ProductsTile  title="Ao Dai                    "/>
       <ProductsCarousel data={aodai}/>
       <ProductsTile title="Đầm                       "/>
       <ProductsCarousel data={dam}/>

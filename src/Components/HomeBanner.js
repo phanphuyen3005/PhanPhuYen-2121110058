@@ -1,25 +1,60 @@
-import { View, Text, Image } from "react-native";
-import React from "react";
-import { responsiveHeight } from "react-native-responsive-dimensions";
+import React from 'react';
+import { View, Image, StyleSheet } from 'react-native';
+import Carousel from 'react-native-snap-carousel';
+import { responsiveHeight } from 'react-native-responsive-dimensions';
 
 const HomeBanner = () => {
+  const images = [
+    require('../assets/slider1.jpg'),
+    require('../assets/slider2.jpg'),
+    require('../assets/slider3.jpg'),
+  ];
+
+  const _renderItem = ({ item, index }) => {
+    return (
+      <View style={styles.slide}>
+        <Image
+          style={styles.image}
+          source={item}
+        />
+      </View>
+    );
+  };
+
   return (
-    <View>
-
-      <Image
-        style={{
-          height: responsiveHeight(15),
-          marginTop: 15,
-          alignSelf: "center",
-          borderRadius: 15,
-          height: 150,
-          width: 345,
-        }}
-        source={require("../assets/slider1.jpg")}
-      />
-    </View>
-
+    <Carousel
+      data={images}
+      renderItem={_renderItem}
+      sliderWidth={345}
+      itemWidth={345}
+      loop={true}
+      autoplay={true}
+      autoplayInterval={3000}
+      containerCustomStyle={{ marginTop: 15 }}
+      contentContainerCustomStyle={styles.sliderContentContainer}
+    />
   );
 };
+
+const styles = StyleSheet.create({
+  slide: {
+    paddingLeft: 40,
+    width: 345,
+    height: responsiveHeight(15),
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 15,
+  },
+  sliderContentContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+
+  },
+});
 
 export default HomeBanner;
