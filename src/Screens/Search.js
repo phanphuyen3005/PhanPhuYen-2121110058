@@ -1,34 +1,38 @@
-import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
 import React from "react";
-import { fruits } from "../Utils/Date";
-import { responsiveHeight } from "react-native-responsive-dimensions";
-import { AntDesign } from "@expo/vector-icons";
+import { Image, ScrollView, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../Redux/CartSlice";
+// import { useDispatch } from "react-redux";
+const SearchScreen = ({ route }) => {
+  console.log(route);
+  // const dispatch = useDispatch();
+  // const navigation = useNavigation();
+  // const key = route.params?.key || "";
+  // const data = aodai.filter((item) =>
+  //   item.name.toLowerCase().includes(key.toLowerCase())
+  // );
 
-const ProductsCarousel = ({ data }) => {
-  const dispatch = useDispatch();
-  const storeData = useSelector((state) => state.CartSlice);
-  const nav = useNavigation();
+  // console.log("data", data);
+
   return (
-    <View style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
-      {
-        data.map((item) => (
+    <ScrollView>
+      {/* <View>
+      <Text style={[{color:"red"}]} >Tất cả sản phẩm</Text>
+      <HomeSearch></HomeSearch>
+      <View className="my-3">
+        <Text>Search key: {key}</Text>
+      </View>
+      <View >
+        {data?.map((item, index) => (
           <TouchableOpacity
-            onPress={() => {
-              nav.navigate("Details", {
-                main: item,
-              });
-            }}
+            key={index}
+            className="w-[40vw] "
+            onPress={() => navigation.navigate("Detail", { product: item })}
             activeOpacity={0.5}
             style={{
-              height: responsiveHeight(27),
+              height: 200,
               marginTop: 8,
               borderWidth: 1,
               borderColor: "#E3E3E3",
-              width: 185,
-              marginRight: 15,
               borderRadius: 20,
             }}
           >
@@ -41,7 +45,7 @@ const ProductsCarousel = ({ data }) => {
               <Text style={{ fontSize: 18, fontWeight: "600" }}>
                 {item.name}
               </Text>
-              <Text style={{ color: "gray" }}>{item.pieces}</Text>
+              <Text style={{ color: "gray" }}>quantity: {item.pieces}</Text>
 
               <View
                 style={{
@@ -51,7 +55,7 @@ const ProductsCarousel = ({ data }) => {
                 }}
               >
                 <Text style={{ color: "#990000", fontWeight: "bold" }}>
-                  {item.price} VND
+                  {item.price} USD
                 </Text>
                 <AntDesign
                   name="pluscircle"
@@ -64,10 +68,11 @@ const ProductsCarousel = ({ data }) => {
               </View>
             </View>
           </TouchableOpacity>
-        ))
-      }
-    </View>
+        ))}
+      </View>
+    </View> */}
+    </ScrollView>
   );
 };
 
-export default ProductsCarousel;
+export default SearchScreen;

@@ -1,8 +1,16 @@
 import { View, Text, TextInput } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { responsiveHeight } from "react-native-responsive-dimensions";
 import { FontAwesome } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 const HomeSearch = () => {
+  const [key, setKey] = useState("");
+  const navigation = useNavigation();
+  const handleSearch = () => {
+    navigation.navigate("Search", {
+      key:key,
+    })
+  }
   return (
     <View
       style={{
@@ -16,7 +24,7 @@ const HomeSearch = () => {
       }}
     >
       <FontAwesome name="search" size={24} color="black" />
-      <TextInput style={{ flex: 1 }} placeholder="Search Store" />
+      <TextInput onBlur={handleSearch} onChange={(text) => setKey(text)} style={{ flex: 1 }} placeholder="Search..." />
     </View>
   );
 };
